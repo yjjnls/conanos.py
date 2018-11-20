@@ -107,9 +107,16 @@ def Main(name,pure_c=True):
         version  = m.group('version')
         arch     = 'x86_64' if not m.group('arch') else m.group('arch')
 
-        docker_entry_script += "export CONANOS_SCHEME=%s"%os.environ.get("CONANOS_SCHEME",'')
-        docker_entry_script += " && export CONANOS_SCHEME_REPO=%s"%os.environ.get("CONANOS_SCHEME_REPO",'')
-        docker_entry_script += " && pip install conanos --upgrade"
+        CONANOS_SCHEME      = os.environ.get("CONANOS_SCHEME")
+        CONANOS_SCHEME_REPO = os.environ.get("CONANOS_SCHEME_REPO")
+
+        docker_entry_script += "pip install conanos --upgrade"
+
+        if CONANOS_SCHEME:
+            docker_entry_script += " && export CONANOS_SCHEME=%s"%CONANOS_SCHEME
+        if CONANOS_SCHEME_REPO:
+            docker_entry_script += " && export CONANOS_SCHEME_REPO=%s"%CONANOS_SCHEME_REPO
+
         if os.path.exists('docker_entry_script.sh'):
             docker_entry_script +=' && /bin/bash docker_entry_script.sh %s %s %s'%(compiler,version,arch)
     
