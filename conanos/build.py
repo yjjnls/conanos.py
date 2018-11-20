@@ -10,8 +10,9 @@ from cpt.packager import ConanMultiPackager,load_cf_class
 
 
 def loadScheme_(name):
-    CONANOS_SCHEME_REPO = os.environ.get('CONANOS_SCHEME_REPO',
-      'https://raw.githubusercontent.com/conanos/schemes/master')
+    CONANOS_SCHEME_REPO = os.environ.get('CONANOS_SCHEME_REPO')
+    if not CONANOS_SCHEME_REPO:
+        CONANOS_SCHEME_REPO = 'https://raw.githubusercontent.com/conanos/schemes/master'
     tools.out.info('Conan build for scheme : %s'%name)
     tools.out.info('scheme repository : %s'%CONANOS_SCHEME_REPO)
 
