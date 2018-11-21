@@ -42,10 +42,9 @@ setup(
     maintainer='Mingyi Zhang',
     url='https://github.com/conanos/conanos.py',
     license='LGPL 2.1',
-    install_requires=['PyYAML', 
+    install_requires=[
       'conan',
-      'conan_package_tools',
-      'bincrafters_package_tools',
+      'conan_package_tools'
     ], 
 
     packages=[NAME,
