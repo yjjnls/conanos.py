@@ -59,7 +59,7 @@ from conans import CMake
 if not hasattr(CMake,'_conan_hacks'):
     CMake._conan_hacks={}
 
-if not CMake._conan_hacks.has_key('configure'):
+if not 'configure' in CMake._conan_hacks:
     CMake._conan_hacks['configure']={
         'origin':CMake.configure,
         'hacked':_configure
